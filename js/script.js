@@ -61,8 +61,8 @@
              var seller = listingObj.Shop.shop_name
              var price = listingObj.price
              var imageArray = listingObj.Images
-                 //console.log(imageArray)
-             var imageURL = imageArray[0].url_fullxfull
+                 console.log(imageArray)
+             var imageURL = imageArray[0].url_170x135
              htmlString += '<div class="listing">'
              htmlString += '<div class="home-image">' + '<img listingId="' + listingId + '" src="' + imageURL + '">' + '</div>'
              htmlString += '<div class="title-data">' + '<p class="title">' + title + '</p>' + '</div>'
