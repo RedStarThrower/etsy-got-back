@@ -30,7 +30,7 @@
 
      events: { // <= Creates an event to switch views 
          "click img": "_triggerDetailView",
-         
+
      },
 
      _triggerDetailView: function(clickEvent) {
@@ -53,10 +53,12 @@
              var seller = listingObj.Shop.shop_name
              var price = listingObj.price
              var imageArray = listingObj.Images
-                 console.log(imageArray)
-                 if (imageArray.length > 0) {
-                 	var imageURL = imageArray[0].url_170x135
-                 }             
+                 //console.log(imageArray)
+             if (imageArray.length > 0) {
+                 var imageURL = imageArray[0].url_170x135
+             } else {
+                 var imageURL = images/placeholder.png
+             }
              htmlString += '<div class="listing">'
              htmlString += '<div class="home-image">' + '<img listingId="' + listingId + '" src="' + imageURL + '">' + '</div>'
              htmlString += '<div class="title-data">' + '<p class="title">' + title + '</p>' + '</div>'
@@ -91,7 +93,14 @@
          var description = listingObj.description
          var price = listingObj.price
          var imageArray = listingObj.Images
-         var imageURL = imageArray[0].url_570xN
+            if (imageArray.length > 0) {
+                var imageURL = imageArray[0].url_570xN
+            } 
+            else {
+
+             var imageURL = images/placeholder.png
+
+            }
 
          htmlString += '<div class="detail-listing">'
          htmlString += '<div class="detail-title-data">' + '<p class="detail-title">' + title + '</p>' + '</div>'
@@ -106,19 +115,19 @@
  })
 
  var SearchView = Backbone.View.extend({
- 	el: "#main-header",
+     el: "#main-header",
 
- 	initialize: function(someModel) {
+     initialize: function(someModel) {
          this.model = someModel
          var boundRenderFunc = this._render.bind(this)
          this.model.on("sync", boundRenderFunc)
-    },
+     },
 
-    events: {
-    	"keydown input": "_searchByKeyword"
-    },
+     events: {
+         "keydown input": "_searchByKeyword"
+     },
 
-    _searchByKeyword: function(keyEvent) {
+     _searchByKeyword: function(keyEvent) {
          var searchTerm = keyEvent.target.value
          console.log(keyEvent.target)
          if (keyEvent.keyCode === 13) {
@@ -126,20 +135,20 @@
          }
      },
 
-    _render: function() {
-    	var htmlString = '<div id="etsy-logo"><img id="logo" src="images/etsy-logo.jpg"></div>'
-			htmlString += '<input class="search-el" placeholder="Search for items or shops">'
-			htmlString += '<header id="nav-header">' + '<ul>' + 
-			'<a href="#search/clothing accessories"><li class="tab">Clothing & Accessories</li></a>' +
-			'<a href="#search/jewelry"><li class="tab">Jewelry</li></a>' +
-			'<a href="#search/craft supplies"><li class="tab"> Craft Supplies & Tools</li></a>' +
-			'<a href="#search/weddings"><li class="tab">Weddings</li></a>' +
-			'<a href="#search/entertainment"><li class="tab">Entertainment</li></a>' +
-			'<a href="#search/home living"><li class="tab">Home & Living</li></a>' +
-			'<a href="#search/kids baby"><li class="tab">Kids & Baby</li></a>' +
-			'<a href="#search/vintage"><li class="tab">Vintage</li></a>' + '</ul>' + '</header>'
-    	this.el.innerHTML = htmlString
-    }
+     _render: function() {
+         var htmlString = '<div id="etsy-logo"><img id="logo" src="images/etsy-logo.jpg"></div>'
+         htmlString += '<input class="search-el" placeholder="Search for items or shops">'
+         htmlString += '<header id="nav-header">' + '<ul>' +
+             '<a href="#search/clothing accessories"><li class="tab">Clothing & Accessories</li></a>' +
+             '<a href="#search/jewelry"><li class="tab">Jewelry</li></a>' +
+             '<a href="#search/craft supplies"><li class="tab"> Craft Supplies & Tools</li></a>' +
+             '<a href="#search/weddings"><li class="tab">Weddings</li></a>' +
+             '<a href="#search/entertainment"><li class="tab">Entertainment</li></a>' +
+             '<a href="#search/home living"><li class="tab">Home & Living</li></a>' +
+             '<a href="#search/kids baby"><li class="tab">Kids & Baby</li></a>' +
+             '<a href="#search/vintage"><li class="tab">Vintage</li></a>' + '</ul>' + '</header>'
+         this.el.innerHTML = htmlString
+     }
  })
 
  // ---------- Router ---------- //
@@ -167,7 +176,7 @@
              //promise.then(function(jsonData) {
              //console.log(jsonData) //<= just to test the model and see the object. Must add #home/
              //})
-         promise.then(listView._render.bind(listView)) //<= checking that the model and view are connected and the render method works; binding the callback's "this" to the View	
+         promise.then(listView._render.bind(listView)) //<= checking that the model and view are connected and the render method works; binding the callback's "this" to the View   
      },
 
      handleDetailView: function(listingId) {
