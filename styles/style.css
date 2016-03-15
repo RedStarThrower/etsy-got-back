@@ -25,6 +25,7 @@ body {
     margin-top: 0;
     background-color: white;
     border-bottom: 1px solid #CFCBC8;
+    border-top: 1px solid #CFCBC8;
 }
 
 ul {

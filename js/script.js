@@ -127,6 +127,15 @@
     _render: function() {
     	var htmlString = '<div id="etsy-logo"><img id="logo" src="images/etsy-logo.jpg"></div>'
 			htmlString += '<input class="search-el" placeholder="Search for items or shops">'
+			htmlString += '<header id="nav-header">' + '<ul>' + 
+			'<a href="#search/clothing accessories"><li class="tab">Clothing & Accessories</li></a>' +
+			'<a href="#search/jewelry"><li class="tab">Jewelry</li></a>' +
+			'<a href="#search/craft supplies"><li class="tab"> Craft Supplies & Tools</li></a>' +
+			'<a href="#search/weddings"><li class="tab">Weddings</li></a>' +
+			'<a href="#search/entertainment"><li class="tab">Entertainment</li></a>' +
+			'<a href="#search/home living"><li class="tab">Home & Living</li></a>' +
+			'<a href="#search/kids baby"><li class="tab">Kids & Baby</li></a>' +
+			'<a href="#search/vintage"><li class="tab">Vintage</li></a>' + '</ul>' + '</header>'
     	this.el.innerHTML = htmlString
     }
  })
