@@ -30,15 +30,7 @@
 
      events: { // <= Creates an event to switch views 
          "click img": "_triggerDetailView",
-         "keydown input": "_searchByKeyword"
-     },
-
-     _searchByKeyword: function(keyEvent) {
-         var searchTerm = keyEvent.target.value
-         console.log(keyEvent.target)
-         if (keyEvent.keyCode === 13) {
-             location.hash = "search/" + searchTerm
-         }
+         
      },
 
      _triggerDetailView: function(clickEvent) {
@@ -51,7 +43,7 @@
          //console.log(this.model) 
          var resultsArray = this.model.get("results")
              //console.log(resultsArray) 
-         var htmlString = '<input class="search-el" placeholder="Search for items or shops">'
+         var htmlString = ""
          for (var i = 0; i < resultsArray.length; i++) {
              var listingObj = resultsArray[i]
                  //console.log(listingObj)
@@ -87,7 +79,7 @@
      _render: function() {
          //console.log(this.model)
          var resultsObj = this.model.get("results")
-         var htmlString = '<input class="search-el" placeholder="Search for items or shops">'
+         var htmlString = ""
          var listingObj = resultsObj[0]
              //console.log(listingObj)
          var listingId = listingObj.listing_id
@@ -111,6 +103,34 @@
      }
  })
 
+ var SearchView = Backbone.View.extend({
+ 	el: "#main-header",
+
+ 	initialize: function(someModel) {
+         this.model = someModel
+         var boundRenderFunc = this._render.bind(this)
+         this.model.on("sync", boundRenderFunc)
+    },
+
+    events: {
+    	"keydown input": "_searchByKeyword"
+    },
+
+    _searchByKeyword: function(keyEvent) {
+         var searchTerm = keyEvent.target.value
+         console.log(keyEvent.target)
+         if (keyEvent.keyCode === 13) {
+             location.hash = "search/" + searchTerm
+         }
+     },
+
+    _render: function() {
+    	var htmlString = '<div id="etsy-logo"><img id="logo" src="images/etsy-logo.jpg"></div>'
+			htmlString += '<input class="search-el" placeholder="Search for items or shops">'
+    	this.el.innerHTML = htmlString
+    }
+ })
+
  // ---------- Router ---------- //
 
  var EtsyRouter = Backbone.Router.extend({
@@ -125,6 +145,7 @@
      handleListView: function() {
          var listModel = new ListModel()
          var listView = new ListView(listModel)
+         var searchView = new SearchView(listModel)
          var promise = listModel.fetch({
                  dataType: "jsonp",
                  data: {
@@ -155,7 +176,8 @@
 
      handleSearchView: function(keywords) {
          var searchModel = new ListModel()
-         var searchView = new ListView(searchModel)
+         var listView = new ListView(searchModel)
+         var searchView = new SearchView(searchModel)
          var promise = searchModel.fetch({
              dataType: "jsonp",
              data: {
