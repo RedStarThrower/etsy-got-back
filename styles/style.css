@@ -57,17 +57,7 @@ ul {
     padding-top: 10px;
     width: 90px;
 }
-
-#search-container {
-    left: 20%;
-    top: 27%;
-    position: absolute;
-    white-space: nowrap;
-    display: table-cell;
-    vertical-align: top;
-}
-
-#search-el {
+.search-el {
     position: absolute;
     display: inline-block;
     border: 1px solid #CFCBC8;
@@ -87,26 +77,9 @@ ul {
     vertical-align: top;
 }
 
-#search-button {
-    position: absolute;
-    line-height: 17px;
-    height: 34px;
-    outline: none;
-    padding: 7px 15px 8px;
-    background-color: #34A8C4;
-    border-color: rgba(0, 0, 0, 0.1);
-    color: #FFF;
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    display: inline-block;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 8px 12px;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
+#main-container {
+    width: 100%;
+    margin-left: 3%;
 }
 
 .listing {
@@ -144,10 +117,6 @@ ul {
     color: #9A9A9A;
     padding-left: 5px;
     width: 100%;
-}
-
-.seller-data .price {
-    
 }
 
 .seller {
@@ -206,4 +175,4 @@ ul {
     color: #78c042;
     width: 47%;
     text-align: right;
-    }
+}

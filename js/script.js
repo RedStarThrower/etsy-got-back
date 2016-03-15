@@ -51,7 +51,7 @@
          //console.log(this.model) 
          var resultsArray = this.model.get("results")
              //console.log(resultsArray) 
-         var htmlString = '<input id="search-el" placeholder="Search for items or shops">'
+         var htmlString = '<input class="search-el" placeholder="Search for items or shops">'
          for (var i = 0; i < resultsArray.length; i++) {
              var listingObj = resultsArray[i]
                  //console.log(listingObj)
@@ -61,7 +61,7 @@
              var seller = listingObj.Shop.shop_name
              var price = listingObj.price
              var imageArray = listingObj.Images
-                 console.log(imageArray)
+                 //console.log(imageArray)
              var imageURL = imageArray[0].url_170x135
              htmlString += '<div class="listing">'
              htmlString += '<div class="home-image">' + '<img listingId="' + listingId + '" src="' + imageURL + '">' + '</div>'
@@ -87,7 +87,7 @@
      _render: function() {
          //console.log(this.model)
          var resultsObj = this.model.get("results")
-         var htmlString = ""
+         var htmlString = '<input class="search-el" placeholder="Search for items or shops">'
          var listingObj = resultsObj[0]
              //console.log(listingObj)
          var listingId = listingObj.listing_id
